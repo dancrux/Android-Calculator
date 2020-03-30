@@ -15,5 +15,7 @@ class MainActivity : AppCompatActivity() {
         val binding : ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         val viewModel =ViewModelProviders.of(this).get(MainViewModel::class.java)
 
+
+
     }
 }
