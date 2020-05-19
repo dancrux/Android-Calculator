@@ -8,8 +8,9 @@
     <fragment
         android:id="@+id/calculatorFragment"
         android:name="com.cruxrepublic.calculatorwithmvvm.ui.CalculatorFragment"
-        android:label="fragment_calculator"
         tools:layout="@layout/fragment_calculator" >
+<!--        android:label="fragment_calculator"-->
+
         <action
             android:id="@+id/action_calculatorFragment_to_history2"
             app:destination="@id/history2" />
@@ -17,6 +18,6 @@
     <fragment
         android:id="@+id/history2"
         android:name="com.cruxrepublic.calculatorwithmvvm.ui.HistoryFragment"
-        android:label="history_fragment"
         tools:layout="@layout/history_fragment" />
+<!--    android:label="history_fragment"-->
 </navigation>
