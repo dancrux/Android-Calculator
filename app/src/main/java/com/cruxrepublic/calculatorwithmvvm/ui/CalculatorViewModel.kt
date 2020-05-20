@@ -21,6 +21,8 @@ class CalculatorViewModel:ViewModel() {
   Log.i(tag, "CalculatorViewModel destroyed!")
  }
 
+
+
 //      for when the user is not done with input
 //    var userIsTyping = false
 //

@@ -39,48 +39,69 @@ class CalculatorFragment : Fragment() {
         binding.historyButton.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_calculatorFragment_to_history2)
         }
+//number Buttons
+        binding.oneButton.setOnClickListener {    buttonPressed(true, "1") }
+        binding.twoButton.setOnClickListener {  buttonPressed(true, "2") }
+        binding.threeButton.setOnClickListener {   buttonPressed(true, "3") }
+        binding.fourButton.setOnClickListener {    buttonPressed(true, "4") }
+        binding.fiveButton.setOnClickListener {    buttonPressed(true, "5") }
+        binding.sixButton.setOnClickListener {   buttonPressed(true, "6") }
+        binding.sevenButton.setOnClickListener {     buttonPressed(true, "7") }
+        binding.eightButton.setOnClickListener {   buttonPressed(true, "8") }
+        binding.nineButton.setOnClickListener {   buttonPressed(true, "9") }
+        binding.zeroButton.setOnClickListener {  buttonPressed(true, "0") }
+        binding.dotButton.setOnClickListener {     buttonPressed(true, ".") }
+//        operation Buttons
+        binding.plusButton.setOnClickListener {    buttonPressed(true, "+") }
+        binding.minusButton.setOnClickListener {    buttonPressed(true, "-") }
+        binding.divideButton.setOnClickListener {     buttonPressed(true, "/") }
+        binding.multiplicationButton.setOnClickListener {   buttonPressed(true, "x") }
 
-        binding.oneButton.setOnClickListener { numberPressed() }
-        binding.twoButton.setOnClickListener { numberPressed() }
-        binding.threeButton.setOnClickListener { numberPressed() }
-        binding.fourButton.setOnClickListener { numberPressed() }
-        binding.fiveButton.setOnClickListener { numberPressed() }
-        binding.sixButton.setOnClickListener { numberPressed() }
-        binding.sevenButton.setOnClickListener { numberPressed() }
-        binding.eightButton.setOnClickListener { numberPressed() }
-        binding.nineButton.setOnClickListener { numberPressed() }
-        binding.zeroButton.setOnClickListener { numberPressed() }
-        binding.plusButton.setOnClickListener { numberPressed() }
-        binding.minusButton.setOnClickListener { numberPressed() }
-        binding.divideButton.setOnClickListener { numberPressed() }
-        binding.multiplicationButton.setOnClickListener { numberPressed() }
-        binding.dotButton.setOnClickListener { numberPressed() }
-        binding.equalButton.setOnClickListener { numberPressed() }
-        binding.clearButton.setOnClickListener { numberPressed() }
+        binding.clearButton.setOnClickListener { clear() }
+
+        binding.equalButton.setOnClickListener {    clear() }
+
+
 
 
       return  binding.root
     }
 
-    private fun numberPressed() {
+    fun buttonPressed(clear: Boolean, string: String){
+        if (clear){
+            binding.result.text = ""
+            binding.inputText.append(string)
+        }else{
+            binding.inputText.append(binding.result.text)
+            binding.inputText.append(string)
+            binding.result.text = ""
+        }
+        }
 
-      var number = binding.oneButton.text
+    fun clear(){
+        binding.inputText.text = ""
+        binding.result.text = ""
+    }
 
-        inputText.append(number)
-//        val button = view as Button
+//    private fun numberPressed() {
 //
-//        val number = button.text
-
-//            if (userIsTyping){
-//                result.append(number)
-//            }else{
-//                result.text =button.text
+//      var number = binding.oneButton.text
 //
-////                userIsTyping = true
-//            }
+//        inputText.append(number)
+////        val button = view as Button
+////
+////        val number = button.text
+//
+////            if (userIsTyping){
+////                result.append(number)
+////            }else{
+////                result.text =button.text
+////
+//////                userIsTyping = true
+////            }
     }
 
 
 
 
-}
+
