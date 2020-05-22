@@ -249,33 +249,34 @@
             android:text="@string/clear"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/buttonGreen"
-            app:layout_constraintBottom_toBottomOf="@+id/divideButton"
-            app:layout_constraintEnd_toStartOf="@+id/divideButton"
+            app:layout_constraintBottom_toBottomOf="@+id/backSpaceButton"
+            app:layout_constraintEnd_toStartOf="@+id/backSpaceButton"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/historyButton"
-            app:layout_constraintTop_toTopOf="@+id/divideButton" />
+            app:layout_constraintTop_toTopOf="@+id/backSpaceButton" />
 
         <Button
             android:id="@+id/divideButton"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/divide"
+            android:textColor="@color/buttonGreen"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/buttonGreen"
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/clearButton"
-            app:layout_constraintTop_toTopOf="@+id/guideline5" />
+            app:layout_constraintStart_toEndOf="@id/backSpaceButton"
+            app:layout_constraintTop_toTopOf="@+id/guideline5"
+            app:layout_constraintVertical_bias="0.522" />
 
         <Button
             android:id="@+id/historyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:text="@string/history"
             android:textColor="@color/buttonGreen"
             app:layout_constraintBottom_toBottomOf="@+id/clearButton"
@@ -331,6 +332,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/backSpaceButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@android:drawable/ic_input_delete"
+            android:drawableTint="@color/buttonGreen"
+            app:layout_constraintBottom_toBottomOf="@+id/divideButton"
+            app:layout_constraintEnd_toStartOf="@id/divideButton"
+            app:layout_constraintStart_toEndOf="@id/clearButton"
+            app:layout_constraintTop_toTopOf="@+id/divideButton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
