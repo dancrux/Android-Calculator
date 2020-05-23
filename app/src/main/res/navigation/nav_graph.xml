@@ -18,6 +18,13 @@
     <fragment
         android:id="@+id/history2"
         android:name="com.cruxrepublic.calculatorwithmvvm.ui.history.HistoryFragment"
-        tools:layout="@layout/history_fragment" />
+        tools:layout="@layout/history_fragment" >
+        <argument
+            android:name="calculationExpression"
+            app:argType="string" />
+        <argument
+            android:name="calculationResult"
+            app:argType="string" />
+    </fragment>
 <!--    android:label="history_fragment"-->
 </navigation>

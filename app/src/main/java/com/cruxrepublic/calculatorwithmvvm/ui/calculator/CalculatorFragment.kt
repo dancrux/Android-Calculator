@@ -10,6 +10,7 @@ import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 
 import com.cruxrepublic.calculatorwithmvvm.R
 import com.cruxrepublic.calculatorwithmvvm.databinding.FragmentCalculatorBinding
@@ -37,14 +38,23 @@ class CalculatorFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_calculator, container, false)
 
-        binding.historyButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_calculatorFragment_to_history2)
-        }
+        binding.historyButton.setOnClickListener { openHistory()}
+//            view.findNavController()
+//                .navigate(CalculatorFragmentDirections
+//                    .actionCalculatorFragmentToHistory2("2=2", "4"))
+
 
         initializeButtons()
       return  binding.root
     }
 
+    private fun openHistory() {
+       val action = CalculatorFragmentDirections
+           .actionCalculatorFragmentToHistory2(binding.inputText.text.toString(),
+               binding.result.text.toString())
+        NavHostFragment.findNavController(this).navigate(action)
+
+    }
 
 
     private fun initializeButtons(){

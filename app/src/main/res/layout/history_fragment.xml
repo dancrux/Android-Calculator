@@ -4,24 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.history.HistoryFragment">
 
+    <data>
+        <variable
+            name="historyViewModel"
+            type="com.cruxrepublic.calculatorwithmvvm.ui.history.HistoryViewModel" />
+
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/historyConstraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Hello" />
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/button"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Hello"
+            android:layout_width="0dp"
+            android:text="@string/clear_history_button"
+            android:textColor="@color/buttonGreen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+            />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
