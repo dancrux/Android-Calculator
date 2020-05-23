@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/calculatorFragment"
-        android:name="com.cruxrepublic.calculatorwithmvvm.ui.CalculatorFragment"
+        android:name="com.cruxrepublic.calculatorwithmvvm.ui.calculator.CalculatorFragment"
         tools:layout="@layout/fragment_calculator" >
 <!--        android:label="fragment_calculator"-->
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/history2"
-        android:name="com.cruxrepublic.calculatorwithmvvm.ui.HistoryFragment"
+        android:name="com.cruxrepublic.calculatorwithmvvm.ui.history.HistoryFragment"
         tools:layout="@layout/history_fragment" />
 <!--    android:label="history_fragment"-->
 </navigation>

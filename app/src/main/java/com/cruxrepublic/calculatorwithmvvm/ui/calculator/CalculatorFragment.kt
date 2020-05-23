@@ -1,4 +1,4 @@
-package com.cruxrepublic.calculatorwithmvvm.ui
+package com.cruxrepublic.calculatorwithmvvm.ui.calculator
 
 import android.os.Bundle
 import android.util.Log
@@ -6,13 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 
 import com.cruxrepublic.calculatorwithmvvm.R
 import com.cruxrepublic.calculatorwithmvvm.databinding.FragmentCalculatorBinding
-import net.objecthunter.exp4j.Expression
+import kotlinx.android.synthetic.main.fragment_calculator.*
 import net.objecthunter.exp4j.ExpressionBuilder
 import java.text.DecimalFormat
 
@@ -72,21 +73,17 @@ class CalculatorFragment : Fragment() {
     private fun operationalButtons() {
         //        operation Buttons
         binding.minusButton.setOnClickListener {
-//            viewModel.selectOperation('S')
             displayAppendedDigit("-")
 
         }
         binding.plusButton.setOnClickListener {
-//            viewModel.selectOperation('A')
             displayAppendedDigit("+")
         }
         binding.divideButton.setOnClickListener {
-//            viewModel.selectOperation('D')
             displayAppendedDigit("/")
         }
         binding.multiplicationButton.setOnClickListener {
-//            viewModel.selectOperation('M')
-            displayAppendedDigit("x")
+            displayAppendedDigit("*")
         }
 
     }
@@ -109,50 +106,29 @@ class CalculatorFragment : Fragment() {
 
     private fun displayAppendedDigit(number: String){
         viewModel.appendToDigit(number)
-        binding.inputText.text = viewModel.digitOnScreen.toString()
-
+        if (binding.inputText.text.isNotEmpty() && binding.result.text.isNotEmpty()) {
+            clear()
+        }else{
+            binding.inputText.text = viewModel.digitOnScreen.toString()
+        }
     }
-    private fun performMathOperation(){
 
-//        viewModel.rightHandSide = viewModel.digitOnScreen.toString().toDouble()
-//
-//    when(viewModel.operation) {
-//        'A' -> {
-//            val sum = OperationsHelper.add(viewModel.leftHandSide,viewModel.rightHandSide)
-//            val df = DecimalFormat(".##")
-//            val formattedSum = df.format(sum)
-//            binding.result.text = formattedSum.toString()
-//            viewModel.digitOnScreen.append(formattedSum)
-//
-//        }
-//        'S' -> {
-//            val subtract = OperationsHelper.subtract(viewModel.leftHandSide, viewModel.rightHandSide)
-//            binding.result.text = subtract.toString()
-//            viewModel.digitOnScreen.append(subtract)
-//
-//        }
-//        'M' -> {
-//            val multiply = OperationsHelper.multiply(viewModel.leftHandSide, viewModel.rightHandSide)
-//            binding.result.text = multiply.toString()
-//            viewModel.digitOnScreen.append(multiply)
-//
-//        }
-//        'D' -> {
-//            val divide = OperationsHelper.divide(viewModel.leftHandSide, viewModel.rightHandSide)
-//            binding.result.text = divide.toString()
-//            viewModel.digitOnScreen.append(divide)
-//
-//        }
-//    }
+
+    private fun performMathOperation(){
         val digit = binding.inputText.text.toString()
         val expression = ExpressionBuilder(digit).build()
 
         val result = expression.evaluate()
-        val df = DecimalFormat("#.#")
-        val formattedResult = df.format(result)
 
-//        val longResult = result.toLong()
-        binding.result.text = formattedResult.toString()
+        val longResult = result.toLong()
+        if(result == longResult.toDouble()){
+
+            binding.result.text = longResult.toString()
+        }else{
+
+            binding.result.text = result.toString()
+        }
+
     }
 
    private fun clear(){

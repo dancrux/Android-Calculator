@@ -1,4 +1,4 @@
-package com.cruxrepublic.calculatorwithmvvm.ui
+package com.cruxrepublic.calculatorwithmvvm.ui.history
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.CalculatorFragment">
+    tools:context=".ui.calculator.CalculatorFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/calculatorConstraint"
