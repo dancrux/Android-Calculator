@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "calculation_history")
 data class CalculationHistory(
     @PrimaryKey(autoGenerate = true)
-    var calculationId: Int = 0,
+    var calculationId: Long = 0L,
 
     @ColumnInfo(name = "calculation_time")
     val calculationTime: Long = System.currentTimeMillis(),

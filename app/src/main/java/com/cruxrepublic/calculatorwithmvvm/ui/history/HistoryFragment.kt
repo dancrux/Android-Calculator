@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.cruxrepublic.calculatorwithmvvm.R
 import com.cruxrepublic.calculatorwithmvvm.databinding.HistoryFragmentBinding
 import com.cruxrepublic.calculatorwithmvvm.storage.database.HistoryDatabase
@@ -28,16 +29,15 @@ class HistoryFragment : Fragment() {
 
         val viewModelFactory = HistoryViewModelFactory(dataSource, application)
 
-        val historyViewModel = ViewModelProviders.of(
+        val historyViewModel = ViewModelProvider(
             this, viewModelFactory).get(HistoryViewModel::class.java)
 
         binding.historyViewModel = historyViewModel
 
         binding.lifecycleOwner = this
 
-        val args = HistoryFragmentArgs.fromBundle(requireArguments())
-        Toast.makeText(context, "CalculationExpression: ${args.calculationExpression}, " +
-                "CalculationResult: ${args.calculationResult}", Toast.LENGTH_LONG).show()
+
+
 
         return binding.root
     }

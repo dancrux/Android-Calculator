@@ -4,6 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.calculator.CalculatorFragment">
 
+    <data>
+        <variable
+            name="calculatorViewModel"
+            type="com.cruxrepublic.calculatorwithmvvm.ui.calculator.CalculatorViewModel" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/calculatorConstraint"
         android:layout_width="match_parent"

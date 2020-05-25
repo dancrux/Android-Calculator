@@ -1,27 +1,23 @@
 package com.cruxrepublic.calculatorwithmvvm.storage.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface CalcHistoryDao{
-    @Insert
-    fun insert(history: CalculationHistory)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(history: CalculationHistory)
 
     @Query("SELECT * FROM  calculation_history WHERE calculationId = :key")
-    fun get(key: Int): CalculationHistory?
-
-    @Query("DELETE FROM  calculation_history" )
-    fun clear()
+   fun get(key: Int): CalculationHistory?
 
     @Query("SELECT * FROM calculation_history ORDER BY calculationId DESC LIMIT 1")
     fun getCalculation(): CalculationHistory?
 
-    @Query("SELECT * FROM calculation_history ORDER BY calculationId DESC ")
+    @Query("SELECT * FROM calculation_history ORDER BY calculationId ASC ")
     fun getAllCalculations(): LiveData<List<CalculationHistory>>
+    @Query("DELETE FROM  calculation_history" )
+    fun clear()
 
 
 }

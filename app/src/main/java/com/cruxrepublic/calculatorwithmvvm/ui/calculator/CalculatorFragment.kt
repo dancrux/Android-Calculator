@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 
 import com.cruxrepublic.calculatorwithmvvm.R
 import com.cruxrepublic.calculatorwithmvvm.databinding.FragmentCalculatorBinding
+import com.cruxrepublic.calculatorwithmvvm.storage.database.HistoryDatabase
 import kotlinx.android.synthetic.main.fragment_calculator.*
 import net.objecthunter.exp4j.ExpressionBuilder
 import java.text.DecimalFormat
@@ -33,15 +35,24 @@ class CalculatorFragment : Fragment() {
     ): View? {
 
         Log.i(tag, "Called ViewModelProviders.of")
-        viewModel = ViewModelProviders.of(this).get(CalculatorViewModel::class.java)
+
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_calculator, container, false)
 
-        binding.historyButton.setOnClickListener { openHistory()}
+        val application = requireNotNull(this.activity).application
+        val  dataSource = HistoryDatabase.getInstance(application).getCalcHistoryDao()
+        val viewModelFactory = CalculatorViewModelFactory(dataSource, application)
+
+        viewModel = ViewModelProvider(this).get(CalculatorViewModel::class.java)
+        binding.calculatorViewModel = viewModel
+
+        binding.lifecycleOwner = this
+
+        binding.historyButton.setOnClickListener {openHistory() }
 //            view.findNavController()
 //                .navigate(CalculatorFragmentDirections
-//                    .actionCalculatorFragmentToHistory2("2=2", "4"))
+//                    .actionCalculatorFragmentToHistory2())
 
 
         initializeButtons()
@@ -50,8 +61,7 @@ class CalculatorFragment : Fragment() {
 
     private fun openHistory() {
        val action = CalculatorFragmentDirections
-           .actionCalculatorFragmentToHistory2(binding.inputText.text.toString(),
-               binding.result.text.toString())
+           .actionCalculatorFragmentToHistory2()
         NavHostFragment.findNavController(this).navigate(action)
 
     }
@@ -118,27 +128,20 @@ class CalculatorFragment : Fragment() {
         viewModel.appendToDigit(number)
         if (binding.inputText.text.isNotEmpty() && binding.result.text.isNotEmpty()) {
             clear()
-        }else{
             binding.inputText.text = viewModel.digitOnScreen.toString()
+        }else{
+           binding.inputText.text = viewModel.digitOnScreen.toString()
         }
     }
 
 
     private fun performMathOperation(){
-        val digit = binding.inputText.text.toString()
-        val expression = ExpressionBuilder(digit).build()
+        if (binding.inputText.text.isNotEmpty()) {
+            viewModel.calculation()
+            binding.result.text = viewModel.result
 
-        val result = expression.evaluate()
 
-        val longResult = result.toLong()
-        if(result == longResult.toDouble()){
-
-            binding.result.text = longResult.toString()
-        }else{
-
-            binding.result.text = result.toString()
         }
-
     }
 
    private fun clear(){
