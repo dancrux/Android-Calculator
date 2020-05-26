@@ -23,7 +23,7 @@ var digitOnScreen = StringBuilder()
 
 private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-//    private val calculation = MutableLiveData<CalculationHistory?>()
+    private val calculation = MutableLiveData<CalculationHistory?>()
 
 
  init {
@@ -64,20 +64,19 @@ fun calculation(){
     private fun initializeCalculation() {
 
     }
-//fun save(){
-//    uiScope.launch {
-//        val newCalculationHistory = CalculationHistory()
-//        insert(newCalculationHistory)
-//        calculation.value
-//
-//    }
-//}
+fun save(){
+    uiScope.launch {
+        val newCalculationHistory = CalculationHistory()
+        insert(newCalculationHistory)
+        calculation.value
+
+    }
+}
 
     private suspend fun insert(history: CalculationHistory){
         withContext(Dispatchers.IO){
             database.insert(history)
         }
-
     }
  override fun onCleared() {
   super.onCleared()
