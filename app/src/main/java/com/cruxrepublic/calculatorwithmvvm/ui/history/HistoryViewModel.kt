@@ -2,6 +2,7 @@ package com.cruxrepublic.calculatorwithmvvm.ui.history
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.cruxrepublic.calculatorwithmvvm.storage.database.CalcHistoryDao
 import com.cruxrepublic.calculatorwithmvvm.storage.database.CalculationHistory
@@ -19,13 +20,14 @@ class HistoryViewModel(
 
     private fun initializeCalculation() {
         uiScope.launch {
-            calculation.value =  getCalculationFromDatabase()
+            getAllCalculations()
+            calculation.value
         }
     }
 
-    private suspend fun getCalculationFromDatabase(): CalculationHistory? {
+    private suspend fun getAllCalculations(): LiveData<List<CalculationHistory>>{
         return withContext(Dispatchers.IO){
-            return@withContext database.getCalculation()
+            return@withContext database.getAllCalculations()
 
 //            var calculation = database.getCalculation()
 //            return@withContext calculation
