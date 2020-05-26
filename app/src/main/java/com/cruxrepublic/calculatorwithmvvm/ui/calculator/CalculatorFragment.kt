@@ -1,5 +1,6 @@
 package com.cruxrepublic.calculatorwithmvvm.ui.calculator
 
+import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import androidx.navigation.fragment.NavHostFragment
 
 import com.cruxrepublic.calculatorwithmvvm.R
 import com.cruxrepublic.calculatorwithmvvm.databinding.FragmentCalculatorBinding
+import com.cruxrepublic.calculatorwithmvvm.storage.database.CalcHistoryDao
 import com.cruxrepublic.calculatorwithmvvm.storage.database.HistoryDatabase
 import kotlinx.android.synthetic.main.fragment_calculator.*
 import net.objecthunter.exp4j.ExpressionBuilder
@@ -40,11 +42,11 @@ class CalculatorFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_calculator, container, false)
 
-        val application = requireNotNull(this.activity).application
-        val  dataSource = HistoryDatabase.getInstance(application).getCalcHistoryDao()
+        val application: Application =  requireNotNull(this.activity).application
+        val  dataSource: CalcHistoryDao = HistoryDatabase.getInstance(application).getCalcHistoryDao()
         val viewModelFactory = CalculatorViewModelFactory(dataSource, application)
 
-        viewModel = ViewModelProvider(this).get(CalculatorViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(CalculatorViewModel::class.java)
         binding.calculatorViewModel = viewModel
 
         binding.lifecycleOwner = this
@@ -139,8 +141,7 @@ class CalculatorFragment : Fragment() {
         if (binding.inputText.text.isNotEmpty()) {
             viewModel.calculation()
             binding.result.text = viewModel.result
-
-
+            viewModel.save()
         }
     }
 

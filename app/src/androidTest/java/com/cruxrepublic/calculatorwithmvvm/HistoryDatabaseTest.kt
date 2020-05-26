@@ -40,7 +40,7 @@ class HistoryDatabaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun insertAndGetCalculation(){
+    suspend fun insertAndGetCalculation(){
         val history = CalculationHistory()
         historyDao.insert(history)
         val recentcalculation = historyDao.getCalculation()

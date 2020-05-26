@@ -3,6 +3,7 @@ package com.cruxrepublic.calculatorwithmvvm.ui.calculator
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.cruxrepublic.calculatorwithmvvm.storage.database.CalcHistoryDao
@@ -52,8 +53,8 @@ fun calculation(){
         longAnswer.toString()
     }else{
         answer.toString()
-
     }
+
 //    if (answer == longAnswer.toDouble()){
 //        result = longAnswer.toString()
 //    }else{
