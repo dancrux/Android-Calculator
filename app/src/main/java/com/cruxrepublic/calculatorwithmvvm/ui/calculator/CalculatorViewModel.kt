@@ -26,9 +26,6 @@ private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private val calculation = MutableLiveData<CalculationHistory?>()
 
-    var savedValue = "$digitOnScreen \n $result"
-
-
  init {
          initializeCalculation()
 
@@ -69,7 +66,7 @@ fun calculation(){
     }
 fun save(){
     uiScope.launch {
-        val newCalculationHistory = CalculationHistory(calculationExpression = savedValue)
+        val newCalculationHistory = CalculationHistory(calculationExpression = "$digitOnScreen \n $result")
         insert(newCalculationHistory)
         calculation.value
 

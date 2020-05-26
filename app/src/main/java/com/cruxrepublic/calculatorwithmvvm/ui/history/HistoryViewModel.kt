@@ -14,27 +14,26 @@ class HistoryViewModel(
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJOb)
     private var calculation = MutableLiveData<CalculationHistory?>()
 
-    init {
-        initializeCalculation()
-    }
+//    init {
+//        initializeCalculation()
+//    }
+//
+//    private fun initializeCalculation() {
+//        uiScope.launch {
+//            getAllCalculations()
+//            calculation.value
+//        }
+//    }
 
-    private fun initializeCalculation() {
-        uiScope.launch {
-            getAllCalculations()
-            calculation.value
-        }
-    }
-
-    private suspend fun getAllCalculations(): LiveData<List<CalculationHistory>>{
-        return withContext(Dispatchers.IO){
-            return@withContext database.getAllCalculations()
+    fun getAllCalculations(): LiveData<List<CalculationHistory>>{
+      return database.getAllCalculations()
 
 //            var calculation = database.getCalculation()
 //            return@withContext calculation
         }
 
 
-    }
+
 
     override fun onCleared() {
         super.onCleared()

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.cruxrepublic.calculatorwithmvvm.R
 import com.cruxrepublic.calculatorwithmvvm.databinding.HistoryFragmentBinding
@@ -17,12 +18,13 @@ import com.cruxrepublic.calculatorwithmvvm.storage.database.HistoryDatabase
 
 
 class HistoryFragment : Fragment() {
+    lateinit var binding: HistoryFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       val binding: HistoryFragmentBinding = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
            inflater, R.layout.history_fragment, container,false
        )
 
@@ -44,6 +46,12 @@ class HistoryFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.historyViewModel?.getAllCalculations()?.observe(viewLifecycleOwner, Observer {
+            binding.textResult.text = it[0].calculationExpression
+        })
+    }
 //    override fun onActivityCreated(savedInstanceState: Bundle?) {
 //        super.onActivityCreated(savedInstanceState)
 //        viewModel = ViewModelProviders.of(this).get(HistoryViewModel::class.java)
