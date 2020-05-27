@@ -42,6 +42,7 @@ class CalculatorFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_calculator, container, false)
 
+
         val application: Application =  requireNotNull(this.activity).application
         val  dataSource: CalcHistoryDao = HistoryDatabase.getInstance(application).getCalcHistoryDao()
         val viewModelFactory = CalculatorViewModelFactory(dataSource, application)

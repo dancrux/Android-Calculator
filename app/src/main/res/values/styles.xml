@@ -9,8 +9,7 @@
 
     </style>
 
-
-
-
-
+    <style name="CustomToolBar" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="titleTextColor">@color/blackGrey</item>
+    </style>
 </resources>
