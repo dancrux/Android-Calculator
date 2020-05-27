@@ -66,7 +66,8 @@ fun calculation(){
     }
 fun save(){
     uiScope.launch {
-        val newCalculationHistory = CalculationHistory(calculationExpression = "$digitOnScreen \n $result")
+        val newCalculationHistory = CalculationHistory(calculationExpression = digitOnScreen.toString(),
+            calculationResult = result, calculationTime = System.currentTimeMillis())
         insert(newCalculationHistory)
         calculation.value
 
