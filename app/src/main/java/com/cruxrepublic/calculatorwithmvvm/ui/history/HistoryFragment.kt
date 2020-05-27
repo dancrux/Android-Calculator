@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.cruxrepublic.calculatorwithmvvm.R
 import com.cruxrepublic.calculatorwithmvvm.databinding.FragmentHistoryBinding
 
@@ -41,11 +42,14 @@ class HistoryFragment : Fragment() {
 
         val adapter = HistoryAdapter()
         binding.calculationsList.adapter = adapter
+        binding.calculationsList.layoutManager = LinearLayoutManager(this.activity)
         historyViewModel.getAllCalculations().observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.data = it
             }
         })
+
+        binding.clearButton.setOnClickListener { historyViewModel.onClear() }
 
 
 

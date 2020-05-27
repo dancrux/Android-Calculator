@@ -11,6 +11,9 @@ import com.cruxrepublic.calculatorwithmvvm.storage.database.CalculationHistory
 import com.cruxrepublic.calculatorwithmvvm.storage.database.HistoryDatabase
 import kotlinx.coroutines.*
 import net.objecthunter.exp4j.ExpressionBuilder
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class CalculatorViewModel(val database: CalcHistoryDao,
@@ -54,12 +57,6 @@ fun calculation(){
         answer.toString()
     }
 
-//    if (answer == longAnswer.toDouble()){
-//        result = longAnswer.toString()
-//    }else{
-//        result = answer.toString()
-//
-//    }
 }
     private fun initializeCalculation() {
 
@@ -67,13 +64,18 @@ fun calculation(){
 fun save(){
     uiScope.launch {
         val newCalculationHistory = CalculationHistory(calculationExpression = digitOnScreen.toString(),
-            calculationResult = result, calculationTime = System.currentTimeMillis())
+            calculationResult = result, calculationTime = formatTime())
         insert(newCalculationHistory)
         calculation.value
 
     }
 }
-
+private fun formatTime(): String {
+    val dateFormat = SimpleDateFormat("dd/MM/yyyy  HH:mm:ss")
+    val date = Date()
+    val dateTime = dateFormat.format(date)
+   return dateTime.toString()
+}
     private suspend fun insert(history: CalculationHistory){
         withContext(Dispatchers.IO){
             database.insert(history)

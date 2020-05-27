@@ -18,12 +18,12 @@ class HistoryViewModel(
 //        initializeCalculation()
 //    }
 //
-//    private fun initializeCalculation() {
-//        uiScope.launch {
-//            getAllCalculations()
-//            calculation.value
-//        }
-//    }
+fun onClear() {
+        uiScope.launch {
+            clear()
+            calculation.value = null
+        }
+    }
 
     fun getAllCalculations(): LiveData<List<CalculationHistory>>{
       return database.getAllCalculations()
@@ -31,6 +31,12 @@ class HistoryViewModel(
 //            var calculation = database.getCalculation()
 //            return@withContext calculation
         }
+  suspend fun clear(){
+        withContext(Dispatchers.IO){
+            database.clear()
+        }
+
+    }
 
 
 

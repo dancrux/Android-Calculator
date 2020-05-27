@@ -10,7 +10,7 @@ data class CalculationHistory(
     var calculationId: Long = 0L,
 
     @ColumnInfo(name = "calculation_time")
-    val calculationTime: Long = System.currentTimeMillis(),
+    val calculationTime: String? = null,
 
     @ColumnInfo(name = "calculation_expression")
     var calculationExpression: String? = null,
