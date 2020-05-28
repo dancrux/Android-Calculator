@@ -14,7 +14,7 @@ interface CalcHistoryDao{
     @Query("SELECT * FROM calculation_history ORDER BY calculationId DESC LIMIT 1")
     fun getCalculation(): CalculationHistory?
 
-    @Query("SELECT * FROM calculation_history ORDER BY calculationId ASC ")
+    @Query("SELECT * FROM calculation_history ORDER BY calculationId DESC ")
     fun getAllCalculations(): LiveData<List<CalculationHistory>>
     @Query("DELETE FROM  calculation_history" )
     fun clear()

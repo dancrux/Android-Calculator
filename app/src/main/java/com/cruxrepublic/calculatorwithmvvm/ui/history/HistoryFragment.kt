@@ -1,5 +1,6 @@
 package com.cruxrepublic.calculatorwithmvvm.ui.history
 
+import android.app.AlertDialog
 import android.app.Application
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -49,7 +50,21 @@ class HistoryFragment : Fragment() {
             }
         })
 
-        binding.clearButton.setOnClickListener { historyViewModel.onClear() }
+        binding.clearButton.setOnClickListener {
+            val builder = AlertDialog.Builder(this.activity)
+            builder.setTitle(R.string.clear_history_title)
+            builder.setMessage(R.string.clear_history_text)
+            builder.setCancelable(true)
+            
+            builder.setPositiveButton("Yes"){
+                dialog, which ->     historyViewModel.onClear()
+            }
+            builder.setNegativeButton("Cancel"){
+                dialog, which ->  dialog.cancel()
+            }
+            val alertDialog = builder.create()
+            alertDialog.show()
+           }
 
 
 

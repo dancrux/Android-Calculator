@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 
@@ -96,17 +95,17 @@ class CalculatorFragment : Fragment() {
     private fun operationalButtons() {
         //        operation Buttons
         binding.minusButton.setOnClickListener {
-            displayAppendedDigit("-")
+            displayOperationSymbol("-")
 
         }
         binding.plusButton.setOnClickListener {
-            displayAppendedDigit("+")
+            displayOperationSymbol("+")
         }
         binding.divideButton.setOnClickListener {
-            displayAppendedDigit("/")
+            displayOperationSymbol("/")
         }
         binding.multiplicationButton.setOnClickListener {
-            displayAppendedDigit("*")
+            displayOperationSymbol("*")
         }
 
     }
@@ -136,8 +135,20 @@ class CalculatorFragment : Fragment() {
            binding.inputText.text = viewModel.digitOnScreen.toString()
         }
     }
+private fun displayOperationSymbol(symbol: String) {
+    viewModel.appendToDigit(symbol)
+    if (binding.inputText.text.isNotEmpty() && binding.result.text.isNotEmpty()) {
 
+        val newExpression = binding.result.text.toString() + symbol
+        viewModel.digitOnScreen.clear()
+        viewModel.digitOnScreen.append(newExpression)
+        binding.result.text = ""
+        binding.inputText.text = newExpression
 
+    } else {
+        binding.inputText.text = viewModel.digitOnScreen.toString()
+    }
+}
     private fun performMathOperation(){
         if (binding.inputText.text.isNotEmpty()) {
             viewModel.calculation()

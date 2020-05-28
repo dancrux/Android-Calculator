@@ -20,6 +20,8 @@
     <string name="zero">0</string>
     <string name="dot">.</string>
     <string name="clear_history_button">Clear</string>
+    <string name="clear_history_title">Clear History?</string>
+    <string name="clear_history_text">Do you Want to Clear History?</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
