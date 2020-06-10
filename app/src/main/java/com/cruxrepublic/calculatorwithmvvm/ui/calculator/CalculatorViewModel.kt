@@ -22,7 +22,7 @@ class CalculatorViewModel(val database: CalcHistoryDao,
 
  private val tag = this::class.simpleName
 var digitOnScreen = StringBuilder()
- var operation: Char =' '
+
     var result = ""
 
 private var viewModelJob = Job()

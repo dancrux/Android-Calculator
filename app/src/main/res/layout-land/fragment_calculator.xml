@@ -48,11 +48,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:focusable="true"
             android:gravity="end"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toTopOf="@+id/guideline5"
             app:layout_constraintEnd_toEndOf="@+id/inputText"
@@ -71,7 +70,8 @@
             app:layout_constraintEnd_toStartOf="@+id/fiveButton"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/fiveButton" />
+            app:layout_constraintTop_toTopOf="@+id/fiveButton"
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/fiveButton"
@@ -97,7 +97,8 @@
             app:layout_constraintEnd_toStartOf="@+id/minusButton"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/fiveButton"
-            app:layout_constraintTop_toTopOf="@+id/minusButton" />
+            app:layout_constraintTop_toTopOf="@+id/minusButton"
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/oneButton"
@@ -167,7 +168,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/nineButton"
-            app:layout_constraintTop_toTopOf="@+id/guideline4" />
+            app:layout_constraintTop_toTopOf="@+id/guideline4"
+            app:layout_constraintVertical_bias="0.133" />
 
         <Button
             android:id="@+id/plusButton"
@@ -180,12 +182,12 @@
             android:textColor="@color/buttonGreen"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/threeButton"
-            app:layout_constraintTop_toTopOf="@+id/guideline2"
-            app:layout_constraintVertical_bias="0.456" />
+            app:layout_constraintTop_toBottomOf="@+id/guideline2"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            />
 
         <Button
             android:id="@+id/zeroButton"
@@ -246,7 +248,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/sixButton"
-            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+            app:layout_constraintTop_toBottomOf="@+id/guideline3" />
 
         <Button
             android:id="@+id/clearButton"
@@ -296,35 +298,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="564dp" />
+            app:layout_constraintGuide_begin="344dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="459dp" />
+            app:layout_constraintGuide_begin="275dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="365dp" />
+            app:layout_constraintGuide_begin="230dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="259dp" />
+            app:layout_constraintGuide_begin="180dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="167dp" />
+            app:layout_constraintGuide_begin="121dp" />
 
         <TextView
             android:id="@+id/inputText"
@@ -334,7 +336,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:gravity="end"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
