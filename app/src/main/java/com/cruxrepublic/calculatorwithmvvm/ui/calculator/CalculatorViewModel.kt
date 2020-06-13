@@ -11,6 +11,8 @@ import com.cruxrepublic.calculatorwithmvvm.storage.database.CalculationHistory
 import com.cruxrepublic.calculatorwithmvvm.storage.database.HistoryDatabase
 import kotlinx.coroutines.*
 import net.objecthunter.exp4j.ExpressionBuilder
+import java.text.DateFormat.getDateInstance
+import java.text.DateFormat.getDateTimeInstance
 import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -67,11 +69,10 @@ fun save(){
             calculationResult = result, calculationTime = formatTime())
         insert(newCalculationHistory)
         calculation.value
-
     }
 }
 private fun formatTime(): String {
-    val dateFormat = SimpleDateFormat("dd/MM/yyyy  HH:mm:ss")
+    val dateFormat = getDateTimeInstance()
     val date = Date()
     val dateTime = dateFormat.format(date)
    return dateTime.toString()
