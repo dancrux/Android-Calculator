@@ -51,24 +51,17 @@ class HistoryFragment : Fragment() {
         })
 
         binding.clearButton.setOnClickListener {
-            val builder = AlertDialog.Builder(this.activity)
-            builder.setTitle(R.string.clear_history_title)
-            builder.setMessage(R.string.clear_history_text)
-            builder.setCancelable(true)
-            
-            builder.setPositiveButton("Yes"){
-                dialog, which ->     historyViewModel.onClear()
-            }
-            builder.setNegativeButton("Cancel"){
-                dialog, which ->  dialog.cancel()
-            }
-            val alertDialog = builder.create()
-            alertDialog.show()
+             AlertDialog.Builder(this.activity).also {
+                 it.setTitle("Clear History?")
+                 it.setMessage("Do You Want to Clear History")
+                 it.setPositiveButton("Yes"){
+                     dialog, which -> historyViewModel.onClear()
+                 }
+                 it.setNegativeButton("Cancel"){
+                     dialog, which ->  dialog.cancel()
+                 }
+             }.create().show()
            }
-
-
-
-
         return binding.root
     }
 
@@ -78,11 +71,7 @@ class HistoryFragment : Fragment() {
 //////            binding.textResult.text = it[0].calculationExpression
 //////        })
 ////    }
-////    override fun onActivityCreated(savedInstanceState: Bundle?) {
-////        super.onActivityCreated(savedInstanceState)
-////        viewModel = ViewModelProviders.of(this).get(HistoryViewModel::class.java)
-//
-////    }
+
 //    }
 
 }
